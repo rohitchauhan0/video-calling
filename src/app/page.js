@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"; // Import useRouter hook
 import SimplePeer from "simple-peer";
 
 const Page = ({ params }) => {
-  const socket = useMemo(() => io("http://localhost:3002"), []);
+  const socket = useMemo(() => io("https://video-calling-d1y9.onrender.com"), []);
   const [myId, setMyId] = useState("");
   const [callId, setCallId] = useState("");
   const [stream, setStream] = useState(null);
