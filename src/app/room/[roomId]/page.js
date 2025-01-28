@@ -21,8 +21,8 @@ const Page = ({params}) => {
 const containerRef = useRef(null);
     let myMeeting = async (element) => {
         // generate Kit Token
-         const appID = 72427470;
-         const serverSecret = process.env.NEXT_PUBLIC_SECRET_KEY;
+         const appID = 724274707;
+         const serverSecret = "88cc5dda6eb5ce970dd1f5ed64f0fac2";
          const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomId,  randomID(5),  randomID(5));
    
        
