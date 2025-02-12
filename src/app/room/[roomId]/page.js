@@ -91,7 +91,7 @@ const Page = ({ params }) => {
 
     return (
         <>
-            <div className='flex items-center justify-between bg-black h-full min-h-screen'>
+            <div className='flex items-center justify-between bg-[#1D1F2E] h-full min-h-screen'>
                 <div className='flex justify-center w-1/2 h-full'>
                     {!isCallStarted && (
                         <div className='flex items-center justify-center flex-col space-y-20'>
@@ -115,7 +115,6 @@ const Page = ({ params }) => {
 
                         {selectedVideo && (
                             <div className="mt-6 w-1/2 absolute top-20 left-0">
-                                <h3 className="text-lg font-bold mb-2">Playing:</h3>
                                 <ReactPlayer
                                     url={`https://www.youtube.com/watch?v=${selectedVideo}`}
                                     controls={true}
