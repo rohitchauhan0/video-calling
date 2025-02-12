@@ -27,7 +27,7 @@ const Page = ({ params }) => {
     const containerRef = useRef(null);
 
     // Establish socket connection
-    const socket = useMemo(() => io("https://video-calling-d1y9.onrender.com2"), []);
+    const socket = useMemo(() => io("https://video-calling-d1y9.onrender.com"), []);
     // const socket = useMemo(() => io("http://localhost:3002"), []);
 
     useEffect(() => {
