@@ -1,28 +1,33 @@
 const io = require("socket.io")(process.env.PORT || 3002, {
     cors: {
-      origin: "https://video-calling-green.vercel.app"
-    //   origin: "http://localhost:3000",
+      // origin: "http://localhost:3000",
+      origin: "https://video-calling-green.vercel.app",
     },
-  });
-  
-  io.on('connection', (socket) => {
-    console.log('User connected:', socket.id);
-    socket.on("create-room", (callback) => {
-        // Generate a random room ID (you can implement your own logic)
-        const roomId = Math.random().toString(36).substring(7);
-        callback(roomId);  // Send the room ID back to the client
-      });
-  
-    socket.on('call-user', ({ offer, to }) => {
-      io.to(to).emit('receive-call', { offer, from: socket.id });
+});
+
+io.on('connection', (socket) => {
+    console.log('A user connected:', socket.id);
+
+    // Handle movie selection and broadcast it to other users
+    socket.on('select-movie', (videoId) => {
+        console.log(`Broadcasting selected movie: ${videoId}`);
+        socket.broadcast.emit('play-movie', videoId);
     });
-  
-    socket.on('answer-call', ({ answer, to }) => {
-      io.to(to).emit('call-answered', { answer });
+
+    // Handle play event and broadcast to all users except the sender
+    socket.on('play-video', () => {
+        console.log('Broadcasting play event');
+        socket.broadcast.emit('play-video');
     });
-  
+
+    // Handle pause event and broadcast to all users except the sender
+    socket.on('pause-video', () => {
+        console.log('Broadcasting pause event');
+        socket.broadcast.emit('pause-video');
+    });
+
+    // Handle user disconnection
     socket.on('disconnect', () => {
-      console.log('User disconnected:', socket.id);
+        console.log('A user disconnected:', socket.id);
     });
-  });
- 
+});
